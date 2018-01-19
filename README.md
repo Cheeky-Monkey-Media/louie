@@ -23,3 +23,4 @@ As this is a starter theme, you should remove the .git folder after cloning. The
 - Add `clear cache` task for after build/dev runs.
 - Add Mannequin frontmatter to twig templates.
 - Add sprite generator
+- Add linting (AirBNB-style)

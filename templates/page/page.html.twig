@@ -46,13 +46,6 @@
 <div class="off-canvas-wrapper">
   <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 
-    <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
-      <button type="button" class="mobile-nav-close" data-toggle="offCanvas">Close Menu</button>
-      {% if page.primary_menu|render|trim %}
-        {{ page.primary_menu }}
-      {% endif %}
-    </div>
-
     <div class="off-canvas-content" data-off-canvas-content>
       <div class="container">
         <div class="page page-internal">
@@ -62,7 +55,7 @@
             <div class="row">
               <div class="columns">
                 <button type="button" class="mobile-nav-open" data-toggle="offCanvas">Close Menu</button>
-                {% if page.header|render|trim %} 
+                {% if page.header|render|trim %}
                   {{ page.header }}
                 {% endif %}
               </div>
@@ -75,7 +68,7 @@
             <section class="primary-menu clearfix">
               <div class="row">
                 <div class="columns">
-                  <!-- primary menu placed here by intention -->
+                  {{ page.primary_menu }}
                 </div>
               </div>
             </section>
@@ -186,6 +179,16 @@
         </div>
       </div>
     </div>
+
+    <div class="off-canvas position-left" id="offCanvas" data-off-canvas data-transition="push">
+      <button class="close-button" aria-label="Close menu" type="button" data-toggle="offCanvas">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      {% if page.offcanvas|render|trim %}
+        {{ page.offcanvas }}
+      {% endif %}
+    </div>
+
   </div>
 </div>
 
