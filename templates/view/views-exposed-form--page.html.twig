@@ -1,0 +1,46 @@
+{#
+/**
+ * @file
+ * Default theme implementation of a views exposed form.
+ *
+ * Available variables:
+ * - form: A render element representing the form.
+ *
+ * @see template_preprocess_views_exposed_form()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{#
+  Foundation-style exposed filters.
+
+  Uses accordion classes and JS to show/hide filters.
+  http://foundation.zurb.com/sites/docs/accordion.html
+
+  Required:
+    JS:   enable "foundation.accordion.js" in /UI/guplfile.js
+    CSS:  enable "@include foundation-accordion;" in /themes/custom/torsion/css/src/style.scss
+#}
+
+<ul class="accordion views-exposed-page-form" data-accordion data-allow-all-closed="true">
+  <li class="accordion-item {{ queried }}" data-accordion-item>
+    <a href="#" class="accordion-title"><span class="title-text">Filters</span></a>
+    <div class="accordion-content" data-tab-content>
+
+      <div class="filters">
+        {% if q is not empty %}
+          {#
+            This ensures that, if clean URLs are off, the 'q' is added first,
+            as a hidden form element, so that it shows up first in the POST URL.
+          #}
+          {{ q }}
+        {% endif %}
+        {{ form }}
+      </div>
+
+    </div>
+  </li>
+</ul>
+
+

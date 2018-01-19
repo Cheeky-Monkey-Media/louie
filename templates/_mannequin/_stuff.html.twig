@@ -1,0 +1,15 @@
+{# @Component
+name: Stuff
+description: Blocks are a container for different items and help structure the site.
+group: Mannequin>all
+samples:
+  default:
+    _description: This is a pattern that uses another pattern.
+    contents:
+      - ~sample('@torsion/_mannequin/buttons.html.twig#default')
+      - ~sample('@torsion/navigation/breadcrumb.html.twig#Long')
+      - ~sample('@torsion/navigation/pager.html.twig#Extended')
+#}
+
+<h4 id="stuff" class="visually-hidden">{{ 'Stuff'|t }}</h4>
+{{contents}}

@@ -1,0 +1,13 @@
+# IDE artifacts
+*~
+\#*\#
+*.swp
+.DS*
+.project
+.idea
+*.sublime*
+
+# Standard NPM folders and files.
+node_modules
+npm-debug.log
+bower_components

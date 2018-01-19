@@ -1,0 +1,60 @@
+{# @Component
+name: Breadcrumbs
+description: Breadcrumbs are a visual way to tell people where they are on the site.
+group: Drupal>Misc
+samples:
+  Short:
+    breadcrumb:
+      - {url: '#', text: 'Home'}
+      - {text: 'You are here'}
+  Long:
+    breadcrumb:
+      - {url: '#', text: 'Home'}
+      - {url: '#', text: 'Some'}
+      - {url: '#', text: 'Nested'}
+      - {url: '#', text: 'Section'}
+      - {text: 'You are here'}
+#}
+
+{#
+/**
+ * @file
+ * Theme override for a breadcrumb trail.
+ *
+ * Available variables:
+ * - breadcrumb: Breadcrumb trail items.
+ */
+#}
+
+{#
+  Added Foundation 6 style breadcrumbs.
+  https://foundation.zurb.com/sites/docs/breadcrumbs.html
+
+  Required:
+    CSS:  enable "@include foundation-breadcrumbs;" in /themes/custom/torsion/css/src/style.scss
+#}
+
+{% if breadcrumb %}
+  <nav class="breadcrumb" role="navigation" aria-labelledby="system-breadcrumb">
+    <h4 id="system-breadcrumb" class="visually-hidden">{{ 'Breadcrumb'|t }}</h4>
+    <ul class="breadcrumbs">
+    {% for item in breadcrumb %}
+      {# Don't add `<a>` tag if it's the last item. #}
+      {# Assumes we're on the _last item_ entity. #}
+      {% if loop.last %}
+        <li>
+          {{ item.text }}
+        </li>
+      {% elseif item.url %}
+        <li>
+            <a href="{{ item.url }}">{{ item.text }}</a>
+        </li>
+      {% else %}
+        <li class="disabled">
+          {{ item.text }}
+        </li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  </nav>
+{% endif %}

@@ -1,0 +1,21 @@
+{# @Component
+name: Fonts
+description: Fonts are used throughout the site, but should be limited to these families.
+group: Mannequin>Globals
+#}
+
+{#
+  We call a macro which calls itself to render the font samples.
+  @see http://twig.sensiolabs.org/doc/tags/macro.html
+#}
+{% import _self as fonts %}
+
+{{ fonts.sampler('"HelveticaNeue", "Helvetica", "Arial", sans-serif;', 'Primary') }}
+{{ fonts.sampler('Georgia, Times, "Times New Roman", serif;', 'Secondary', 'font-secondary') }}
+
+
+{% macro sampler(fonts, type, class) %}
+  <p{{ class ? " class=#{class}" }}>{{ type ?: 'Sample' }} font: {{ fonts }}</p>
+  <p{{ class ? " class=#{class}" }}><em>{{ type ?: 'Sample' }} font italic: {{ fonts }}</em></p>
+  <p{{ class ? " class=#{class}" }}><strong>{{ type ?: 'Sample' }} font bold: {{ fonts }}</strong></p>
+{% endmacro %}

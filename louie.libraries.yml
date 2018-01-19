@@ -1,0 +1,37 @@
+##
+# global library
+##
+global:
+  version: 1.x
+  css:
+    theme:
+      css/style.css: { }
+      css/ckeditor.css: { }
+  js:
+    # Everything is now imported into app.js using ES6 import statements.
+    js/app.js: { weight: -1 }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.ajax
+    - core/jquery.once
+    - core/modernizr
+
+##
+# external libraries
+##
+# fonts:
+#  css:
+#    theme:
+#      //fonts.googleapis.com/css?family=Open+Sans:300,400,700,800,900 { type: external }
+
+
+##
+# vendor
+##
+
+
+##
+# custom
+##

@@ -1,0 +1,31 @@
+{# button.html.twig #}
+{# @Component
+name: Button
+description: This button can be used in...
+group: Drupal>Misc
+samples:
+  Large:
+    classes: ['large']
+    text: I am a Large button
+  Small:
+    classes: ['small']
+    text: I am a small button
+  Primary:
+    classes: ['primary', 'large']
+    text: I'm a primary button
+  Secondary:
+    classes: ['secondary']
+    text: I'm a secondary button
+  Success:
+    classes: ['success']
+    text: I'm a success button
+  Warning:
+    classes: ['warning']
+    text: I'm a warning button
+  Alert:
+    classes: ['alert']
+    text: I'm a alert button
+#}
+<a class="button {{ classes|join(' ') }}">
+    {{text}}
+</a>

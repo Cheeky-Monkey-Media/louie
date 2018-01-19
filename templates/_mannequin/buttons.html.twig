@@ -1,0 +1,21 @@
+{# @Component
+name: Buttons
+description: Blocks are a container for different items and help structure the site.
+group: Mannequin>all
+samples:
+  default:
+    _description: This is a pattern that uses another pattern.
+    contents:
+      - ~sample('@torsion/form/button.html.twig#Large')
+      - ~sample('@torsion/form/button.html.twig#Small')
+      - ~sample('@torsion/form/button.html.twig#Primary')
+      - ~sample('@torsion/form/button.html.twig#Secondary')
+      - ~sample('@torsion/form/button.html.twig#Success')
+      - ~sample('@torsion/form/button.html.twig#Warning')
+      - ~sample('@torsion/form/button.html.twig#Alert')
+#}
+
+{% for content in contents %}
+  {{ content }}
+{% endfor %}
+

@@ -1,0 +1,40 @@
+{# @Component
+name: Dropbutton Wrapper
+description: The dropbutton wrapper sets up a dropdown menu.
+group: Drupal>Misc
+samples:
+  default:
+    children: ~rendered('<ul class="menu vertical"><li><a href="#">1</a></li><li><a href="#">2</a></li><li><a href="#">3</a></li></ul>')
+#}
+
+{#
+/**
+ * @file
+ * Theme override for a dropbutton wrapper.
+ *
+ * Available variables:
+ * - children: Contains the child elements of the dropbutton menu.
+ *
+ * @see template_preprocess()
+ */
+#}
+
+{#
+  Foundation 6 style dropdown buttons.
+  http://foundation.zurb.com/sites/docs/button.html (dropdown arrows)
+  http://foundation.zurb.com/sites/docs/dropdown.html (dropdown component)
+
+  Restructure tags to make Foundation do the work.
+#}
+
+{# Each item on page needs a unique id. #}
+{% set rand = random() %}
+{% if children %}
+  {% spaceless %}
+    <a href="#" class="dropdown button" data-toggle="viewdropdown-{{ rand }}">Actions</a>
+
+    <div class="dropdown-pane bottom" id="viewdropdown-{{ rand }}" data-dropdown data-hover="true" data-hover-pane="true" style="padding:0;">
+      {{ children }}
+    </div>
+  {% endspaceless %}
+{% endif %}

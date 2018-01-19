@@ -1,0 +1,9 @@
+{# @Component
+name: Headings
+description: Different heading sizes and spacing.
+group: Mannequin>Globals
+#}
+
+{% for i in 1..6 %}
+  <h{{i}}>Heading Level {{i}}</h{{i}}>
+{% endfor %}

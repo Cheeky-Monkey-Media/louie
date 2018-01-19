@@ -1,0 +1,32 @@
+name: Louie
+type: theme
+base theme: classy
+description: Custom theme for D8
+package: Core
+version: 1.0.0
+core: 8.x
+screenshot: screenshot.png
+libraries:
+  - louie/global
+
+ckeditor_stylesheets:
+  - css/dist/ckeditor.css
+
+stylesheets-remove:
+  - core/assets/vendor/normalize-css/normalize.css
+  - core/modules/system/css/system.theme.css
+
+regions:
+  header: 'Header'
+  help: 'Help'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  breadcrumb: 'Breadcrumb'
+  highlighted: 'Highlighted'
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  featured: 'Featured'
+  content: 'Content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer: 'Footer'
