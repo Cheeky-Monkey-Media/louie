@@ -1,0 +1,27 @@
+# Your project's server will run on localhost:xxxx at this port
+PORT: 8000
+
+# Autoprefixer will make sure your CSS works with these browsers
+COMPATIBILITY:
+  - "last 2 versions"
+  - "ie >= 9"
+  - "ios >= 7"
+
+# Gulp will reference these paths when it copies files
+PATHS:
+  # Path to dist folder
+  src: "src"
+  # Path to css folder
+  cssDir: "css"
+  # Path to js folder
+  jsDir: "js"
+  # Path to images folder
+  imgDir: "images"
+  # Paths to Sass libraries, which can then be loaded with @import
+  sass:
+    - "node_modules/foundation-sites/scss"
+    - "node_modules/motion-ui/src"
+  # Paths to JavaScript entry points for webpack to bundle modules
+  # Add more if you need specific individual files
+  entries:
+    - "src/js/app.js"

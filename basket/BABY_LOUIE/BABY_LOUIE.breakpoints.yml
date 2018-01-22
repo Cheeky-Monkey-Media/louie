@@ -1,0 +1,56 @@
+BABY_LOUIE.small:
+  label: small
+  mediaQuery: 'all and (max-width: 320px)'
+  weight: 1
+  multipliers:
+    - 1x
+    - 1.5x
+    - 2x
+BABY_LOUIE.smallportrait:
+  label: smallportrait
+  mediaQuery: 'all and (min-width: 321px) and (max-width: 640px)'
+  weight: 2
+  multipliers:
+    - 1x
+    - 1.5x
+    - 2x
+BABY_LOUIE.medium:
+  label: medium
+  mediaQuery: 'all and (min-width: 641px) and (max-width: 768px)'
+  weight: 3
+  multipliers:
+    - 1x
+    - 1.5x
+    - 2x
+BABY_LOUIE.mediumportrait:
+  label: mediumportrait
+  mediaQuery: 'all and (min-width: 769px) and (max-width: 1024px)'
+  weight: 4
+  multipliers:
+    - 1x
+    - 1.5x
+    - 2x
+BABY_LOUIE.large:
+  label: large
+  mediaQuery: 'all and (min-width: 1025px) and (max-width: 1519px)'
+  weight: 5
+  multipliers:
+    - 1x
+    - 1.5x
+    - 2x
+BABY_LOUIE.xlarge:
+  label: extra large
+  mediaQuery: 'all and (min-width: 1520px) and (max-width: 1639px)'
+  weight: 6
+  multipliers:
+    - 1x
+    - 1.5x
+    - 2x
+BABY_LOUIE.xxlarge:
+  label: extra extra large
+  mediaQuery: 'all and (min-width: 1640px)'
+  weight: 7
+  multipliers:
+    - 1x
+    - 1.5x
+    - 2x

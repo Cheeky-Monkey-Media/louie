@@ -1,0 +1,66 @@
+/**
+ * @file
+ * CSS for nav buttons.
+ */
+
+/**
+ * Mobile navigation close button.
+ */
+.mobile-nav-close {
+  float: right;
+  position: relative;
+  display: inline-block;
+  width: rem-calc(32);
+  height: rem-calc(32);
+  overflow: hidden;
+
+  &:hover {
+    &::before,
+    &::after {
+      background: $medium-gray;
+    }
+  }
+
+  &::before,
+  &::after {
+    background: $white;
+    content: '';
+    position: absolute;
+    height: rem-calc(4);
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: rem-calc(-2);
+  }
+
+  &::before {
+    transform: rotate(45deg);
+  }
+
+  &::after {
+    transform: rotate(-45deg);
+  }
+}
+
+/**
+ * Mobile navigation open button.
+ */
+.mobile-nav-open {
+  position: relative;
+  border-top: 4px solid $white;
+  border-bottom: 4px solid $white;
+  width: rem-calc(32);
+  height: rem-calc(28);
+  text-indent: rem-calc(-9999);
+
+  &::after {
+    position: absolute;
+    content: '';
+    width: rem-calc(32);
+    height: rem-calc(4);
+    top: 50%;
+    left: 0;
+    background: $white;
+    margin-top: rem-calc(-2);
+  }
+}
