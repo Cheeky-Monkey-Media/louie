@@ -50,7 +50,6 @@
       <div class="container">
         <div class="page page-internal">
 
-          <!-- site header -->
           <header class="site-header clearfix" role="banner">
             <div class="row">
               <div class="columns">
@@ -61,10 +60,8 @@
               </div>
             </div>
           </header>
-          <!-- // site header -->
 
           {% if page.primary_menu|render|trim %}
-            <!-- primary menu -->
             <section class="primary-menu clearfix">
               <div class="row">
                 <div class="columns">
@@ -72,15 +69,12 @@
                 </div>
               </div>
             </section>
-            <!-- // primary menu -->
           {% endif %}
 
-            <!-- main wrapper -->
             <div id="main-wrapper" role="main">
               <div id="main" class="clearfix">
 
                 {% if page.highlighted|render|trim %}
-                  <!-- highlighted -->
                   <section class="messages">
                     <div class="row">
                       <div class="columns">
@@ -88,11 +82,9 @@
                       </div>
                     </div>
                   </section>
-                  <!-- // highlighted -->
                 {% endif %}
 
                 {% if page.help|render|trim %}
-                  <!-- help -->
                   <section class="help">
                     <div class="row">
                       <div class="columns">
@@ -100,11 +92,9 @@
                       </div>
                     </div>
                   </section>
-                  <!-- // help -->
                 {% endif %}
 
                 {% if page.breadcrumb|render|trim %}
-                  <!-- breadcrumb -->
                   <section class="breadcrumb">
                     <div class="row">
                       <div class="columns">
@@ -112,11 +102,9 @@
                       </div>
                     </div>
                   </section>
-                  <!-- // breadcrumb -->
                 {% endif %}
 
                 {% if page.featured|render|trim %}
-                  <!-- featured -->
                   <section class="featured">
                     <div class="row">
                       <div class="columns">
@@ -124,10 +112,8 @@
                       </div>
                     </div>
                   </section>
-                  <!-- // featured -->
                 {% endif %}
 
-                <!-- main content -->
                 {% if page.sidebar_first|render|trim and page.sidebar_second|render|trim %}
                   <section class="main three-col">
                 {% elseif  page.sidebar_first|render|trim and not page.sidebar_second|render|trim %}
@@ -158,14 +144,11 @@
                     {% endif %}
                   </div>
                 </section>
-                <!-- // main content -->
 
               </div>
             </div>
-            <!-- // main wrapper -->
 
             {% if page.footer|render|trim %}
-              <!-- site footer -->
               <footer class="site-footer" role="contentinfo">
                 <div class="row">
                   <div class="columns">
@@ -173,7 +156,6 @@
                   </div>
                 </div>
               </footer>
-              <!-- // site footer -->
             {% endif %}
 
         </div>
@@ -191,5 +173,3 @@
 
   </div>
 </div>
-
-
