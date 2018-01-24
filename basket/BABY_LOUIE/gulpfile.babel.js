@@ -32,7 +32,7 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, gulp.parallel(sass, javascript, images, sprites, datauriSprites)));
+ gulp.series(clean, gulp.parallel(sass, javascript, images, sprites)));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
@@ -122,13 +122,33 @@ function images() {
 // Basic configuration example
 var spriteConfig = {
   mode: {
-    css: {
+    sprite: {
+      mode: 'css',
       // Change below to remove cache-busting feature.
       bust: false,
       render: {
         scss: {
           template: './src/sprite-templates/sprite-template.scss',
           dest: '_sprite.scss'
+        }
+      },
+      example: true
+    },
+    datauri: {
+      mode: 'css',
+      // Change below to remove cache-busting feature.
+      bust: false,
+      render: {
+        scss: {
+          template: './src/sprite-templates/datauri-template.scss',
+          dest: '_datauri.scss'
+        }
+      },
+      variables: {
+        datauri : function() {
+          return function(svg, render) {
+            return encodeURI(render(svg));
+          }
         }
       },
       example: true
@@ -146,21 +166,6 @@ function sprites() {
   return gulp.src(PATHS.src + '/sprites/**/*')
     .pipe($.svgSprite(spriteConfig))
     .pipe(gulp.dest(PATHS.spriteDir));
-}
-
-// Create datauri variables.
-function datauriSprites() {
-  return gulp.src(PATHS.src + '/sprites/**/*')
-    .pipe($.spriteDatauri({
-        fileName: '_icon-vars.scss',
-        // Get icons in various colors using the config below.
-        // colors: {
-        //   white: '#ffffff',
-        //   blue: '#0000ff'
-        // }
-      })
-    )
-    .pipe(gulp.dest(PATHS.spriteDir + '/datauri'));
 }
 
 // // Start a server with BrowserSync to preview the site in
