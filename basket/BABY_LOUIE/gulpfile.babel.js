@@ -1,16 +1,20 @@
 'use strict';
 
-import plugins       from 'gulp-load-plugins';
-import yargs         from 'yargs';
-import browser       from 'browser-sync';
-import gulp          from 'gulp';
-import rimraf        from 'rimraf';
-import yaml          from 'js-yaml';
-import fs            from 'fs';
-import webpackStream from 'webpack-stream';
-import webpack2      from 'webpack';
-import named         from 'vinyl-named';
-import path          from 'path';
+import plugins                from 'gulp-load-plugins';
+import yargs                  from 'yargs';
+import browser                from 'browser-sync';
+import gulp                   from 'gulp';
+import rimraf                 from 'rimraf';
+import yaml                   from 'js-yaml';
+import fs                     from 'fs';
+import webpackStream          from 'webpack-stream';
+import webpack2               from 'webpack';
+import named                  from 'vinyl-named';
+import path                   from 'path';
+
+// Better image compression
+import imageminJpegRecompress from 'imagemin-jpeg-recompress';
+import imageminPngquant       from 'imagemin-pngquant';
 
 // Load all Gulp plugins into one variable
 const $ = plugins();
@@ -102,10 +106,15 @@ function javascript() {
 // Copy images to the "dist" folder
 // In production, the images are compressed
 function images() {
-  return gulp.src(PATHS.src + '/images/**/*')
-    .pipe($.if(PRODUCTION, $.imagemin({
-      progressive: true
-    })))
+  return gulp.src(PATHS.src + '/images/**/*.{png,jpeg,jpg,svg,png}')
+    .pipe($.if(PRODUCTION, $.imagemin([
+      $.imagemin.gifsicle(),
+      $.imagemin.jpegtran(),
+      $.imagemin.optipng(),
+      $.imagemin.svgo(),
+      imageminJpegRecompress(),
+      imageminPngquant(),
+    ])))
     .pipe(gulp.dest(PATHS.imgDir));
 }
 
