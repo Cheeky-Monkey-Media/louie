@@ -17,6 +17,8 @@ PATHS:
   jsDir: "js"
   # Path to images folder
   imgDir: "images"
+  # Path to sprites folder
+  spriteDir: "sprites"
   # Paths to Sass libraries, which can then be loaded with @import
   sass:
     - "node_modules/foundation-sites/scss"

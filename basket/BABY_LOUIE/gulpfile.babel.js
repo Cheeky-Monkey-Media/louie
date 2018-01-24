@@ -32,7 +32,7 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
- gulp.series(clean, gulp.parallel(sass, javascript, images)));
+ gulp.series(clean, gulp.parallel(sass, javascript, images, sprites, datauriSprites)));
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
@@ -48,6 +48,7 @@ function clean(done) {
   rimraf(PATHS.cssDir, done);
   rimraf(PATHS.jsDir, done);
   rimraf(PATHS.imgDir, done);
+  rimraf(PATHS.spriteDir, done);
 }
 
 // Compile Sass into CSS
@@ -118,6 +119,50 @@ function images() {
     .pipe(gulp.dest(PATHS.imgDir));
 }
 
+// Basic configuration example
+var spriteConfig = {
+  mode: {
+    css: {
+      // Change below to remove cache-busting feature.
+      bust: false,
+      render: {
+        scss: {
+          template: './src/sprite-templates/sprite-template.scss',
+          dest: '_sprite.scss'
+        }
+      },
+      example: true
+    },
+    symbol: {
+      inline: true,
+      prefix: 'icon-%s',
+      example: true
+    }
+  }
+};
+
+// Create sprite files
+function sprites() {
+  return gulp.src(PATHS.src + '/sprites/**/*')
+    .pipe($.svgSprite(spriteConfig))
+    .pipe(gulp.dest(PATHS.spriteDir));
+}
+
+// Create datauri variables.
+function datauriSprites() {
+  return gulp.src(PATHS.src + '/sprites/**/*')
+    .pipe($.spriteDatauri({
+        fileName: '_icon-vars.scss',
+        // Get icons in various colors using the config below.
+        // colors: {
+        //   white: '#ffffff',
+        //   blue: '#0000ff'
+        // }
+      })
+    )
+    .pipe(gulp.dest(PATHS.spriteDir + '/datauri'));
+}
+
 // // Start a server with BrowserSync to preview the site in
 // function server(done) {
 //   browser.init({
@@ -137,4 +182,6 @@ function watch() {
   gulp.watch(PATHS.src + '/**/*.scss').on('all', sass);
   gulp.watch(PATHS.src + '/**/*.js').on('all', javascript);
   gulp.watch(PATHS.src + '/images/**/*').on('all', images);
+  gulp.watch(PATHS.src + '/sprites/**/*').on('all', sprites);
+  gulp.watch(PATHS.src + '/sprites/**/*').on('all', datauriSprites);
 }
