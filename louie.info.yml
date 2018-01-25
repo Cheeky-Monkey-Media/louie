@@ -7,7 +7,7 @@ version: 1.0.0
 core: 8.x
 screenshot: screenshot.png
 libraries:
-  - louie/global
+  - louie/foundation
 
 ckeditor_stylesheets:
   - css/dist/ckeditor.css
