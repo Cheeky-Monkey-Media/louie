@@ -32,7 +32,11 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
+<<<<<<< HEAD
  gulp.series(clean, gulp.parallel(sass, javascript, images, sprites)));
+=======
+ gulp.series(clean, gulp.parallel(sass, lint, javascript, images, sprites)));
+>>>>>>> Added eslint.
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
@@ -71,6 +75,24 @@ function sass() {
     // .pipe(browser.reload({ stream: true }));
 }
 
+// Lint the JS
+function lint() {
+  // ESLint ignores files with "node_modules" paths.
+  // So, it's best to have gulp ignore the directory as well.
+  // Also, Be sure to return the stream from the task;
+  // Otherwise, the task may end before the stream has finished.
+  return gulp.src([PATHS.src + '/js/**/*.js','!node_modules/**'])
+    // eslint() attaches the lint output to the "eslint" property
+    // of the file object so it can be used by other modules.
+    .pipe($.eslint())
+    // eslint.format() outputs the lint results to the console.
+    // Alternatively use eslint.formatEach() (see Docs).
+    .pipe($.eslint.format())
+    // To have the process exit with an error code (1) on
+    // lint error, return the stream and pipe to failAfterError last.
+    .pipe($.eslint.failAfterError());
+}
+
 let webpackConfig = {
   resolve: {
     modules: [
@@ -90,6 +112,7 @@ let webpackConfig = {
     ]
   }
 }
+
 // Combine JavaScript into one file
 // In production, the file is minified
 function javascript() {

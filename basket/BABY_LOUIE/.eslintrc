@@ -1,0 +1,34 @@
+{
+  "root": true,
+  "extends": "airbnb-base",
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "env": {
+    "node": true,
+    "browser": true,
+    "es6": true
+  },
+  "globals": {
+    "Drupal": true,
+    "drupalSettings": true,
+    "drupalTranslations": true,
+    "domready": true,
+    "jQuery": true,
+    "_": true,
+    "matchMedia": true,
+    "Backbone": true,
+    "Modernizr": true,
+    "CKEDITOR": true
+  },
+  "rules": {
+    "no-param-reassign": [0],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "local",
+        "args": "none"
+      }
+    ]
+  }
+}
