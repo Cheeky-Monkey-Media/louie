@@ -32,11 +32,7 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks
 gulp.task('build',
-<<<<<<< HEAD
- gulp.series(clean, gulp.parallel(sass, javascript, images, sprites)));
-=======
  gulp.series(clean, gulp.parallel(sass, lint, javascript, images, sprites)));
->>>>>>> Added eslint.
 
 // Build the site, run the server, and watch for file changes
 gulp.task('default',
