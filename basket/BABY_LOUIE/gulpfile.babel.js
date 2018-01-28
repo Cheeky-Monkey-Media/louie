@@ -7,7 +7,6 @@ import gulp          from 'gulp';
 import rimraf        from 'rimraf';
 import yaml          from 'js-yaml';
 import fs            from 'fs';
-import sourcemaps    from 'gulp-sourcemaps';
 import webpackStream from 'webpack-stream';
 import webpack2      from 'webpack';
 import named         from 'vinyl-named';
