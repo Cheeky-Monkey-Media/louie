@@ -8,4 +8,4 @@ import './components/foundation';
 
 // Import any globals or custom components.
 // `global.js` provides a nice startng point for adding Drupal behaviors.
-// import './global.js';
+// import './global';
