@@ -20,6 +20,6 @@ export default (function globalSite($, Drupal) {
       $(context).find('body').each(() => {
         // Do stuff
       });
-    },
+    }
   };
 }(jQuery, Drupal));

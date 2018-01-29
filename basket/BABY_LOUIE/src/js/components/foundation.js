@@ -13,6 +13,6 @@ export default (function initFoundation($, Drupal) {
     attach(context, settings) {
       // First time through is the entire document.
       $(context).foundation();
-    },
+    }
   };
 }(jQuery, Drupal));
