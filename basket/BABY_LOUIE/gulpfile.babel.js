@@ -18,7 +18,7 @@ const $ = plugins();
 // Check for --production flag
 const PRODUCTION = !!(yargs.argv.production);
 
-// Load settings from settings.yml
+// Load settings from config.yml
 const { COMPATIBILITY, PORT, PATHS } = loadConfig();
 
 function loadConfig() {
@@ -61,7 +61,7 @@ function sass() {
     // Comment in the pipe below to run UnCSS in production
     //.pipe($.if(PRODUCTION, $.uncss(UNCSS_OPTIONS)))
     .pipe($.if(PRODUCTION, $.cleanCss({ compatibility: 'ie9' })))
-    .pipe($.if(!PRODUCTION, $.sourcemaps.write()))
+    .pipe($.if(!PRODUCTION, $.sourcemaps.write('.')))
     .pipe(gulp.dest(PATHS.cssDir));
     // .pipe(browser.reload({ stream: true }));
 }
