@@ -32,11 +32,20 @@ function loadConfig() {
 
 // Build the "dist" folder by running all of the below tasks.
 gulp.task('build',
- gulp.series(clean, gulp.parallel(sass, lint, javascript, images, sprites)));
+ gulp.series(clean, gulp.parallel(sass, javascript, images, sprites), lint));
+
+// Build the "dist" folder by running all of the below tasks.
+// `dev` has no clean command. You might see cruft as you develop.
+// Nothing compiled gets committed.
+gulp.task('dev',
+ gulp.series(gulp.parallel(sass, javascript, images, sprites), lint));
 
 // Build the site, run the server, and watch for file changes.
+// Both these commands do the same thing, but we add `watch` just in case.
 gulp.task('default',
-  gulp.series('build', watch));
+  gulp.series('dev', watch));
+gulp.task('watch',
+  gulp.series('dev', watch));
 
 // Clean it out.
 gulp.task('clean',
@@ -204,8 +213,7 @@ function sprites() {
 // Watch for changes to static assets, sprites, Sass, and JavaScript.
 function watch() {
   gulp.watch(PATHS.src + '/**/*.scss').on('all', sass);
-  gulp.watch(PATHS.src + '/**/*.js').on('all', javascript);
+  gulp.watch(PATHS.src + '/**/*.js', gulp.series(javascript, lint));
   gulp.watch(PATHS.src + '/images/**/*').on('all', images);
   gulp.watch(PATHS.src + '/sprites/**/*').on('all', sprites);
-  gulp.watch(PATHS.src + '/sprites/**/*').on('all', datauriSprites);
 }
