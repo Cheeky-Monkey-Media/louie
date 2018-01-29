@@ -11,12 +11,14 @@ import webpackStream          from 'webpack-stream';
 import webpack2               from 'webpack';
 import named                  from 'vinyl-named';
 import path                   from 'path';
+import sassGlob               from 'gulp-sass-glob';
 
 // Better image compression.
 import imageminJpegRecompress from 'imagemin-jpeg-recompress';
 import imageminPngquant       from 'imagemin-pngquant';
 
-// Load all Gulp plugins into one variable.
+// Load all Gulp plugins into one variable
+>>>>>>> Added sass glob, moved some scss to utilites folder
 const $ = plugins();
 
 // Check for --production flag.
@@ -65,6 +67,7 @@ function clean(done) {
 function sass() {
   return gulp.src(PATHS.src + '/scss/**/*.scss')
     .pipe($.sourcemaps.init())
+    .pipe(sassGlob())
     .pipe($.sass({
       includePaths: PATHS.sass
     })
