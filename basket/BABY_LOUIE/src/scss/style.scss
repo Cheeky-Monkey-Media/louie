@@ -4,7 +4,7 @@
  */
 
 // foundation | site settings
-@import 'base/settings';
+@import '_utilities/settings';
 
 // foundation core
 @import 'foundation';
@@ -59,30 +59,15 @@
 @include motion-ui-animations;
 
 
-// mixins
-@import "base/mixins";
+// Mixins
+@import "_utilities/mixins";
 
-// base
-@import "base/common";
-@import "base/drupal";
+// Auto-import through Sass Glob.
+@import "base/**/*.scss";
+@import "components/**/*.scss";
+@import "layout/**/*.scss";
+@import "regions/**/*.scss";
 
-// layout
-@import "layout/main";
-@import "layout/site-footer";
-@import "layout/site-header";
-
-// region
-@import "regions/region-header";
-
-// components
-@import "components/nav-buttons";
-@import "components/off-canvas";
-@import "components/primary-menu";
-
-@import "components/blocks/main-navigation";
-
-// Views
-
-// print
-@import "base/print";
+// Print.
+@import "_utilities/print";
 
