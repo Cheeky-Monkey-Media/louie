@@ -5,7 +5,7 @@
 
 import jQuery from 'jquery';
 
-(function ($, Drupal) {
+export default (function initFoundation($, Drupal) {
   /**
    * Instantiate initFoundation and run it through Drupal attachment.
    */

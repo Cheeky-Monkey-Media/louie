@@ -12,17 +12,17 @@ import webpack2               from 'webpack';
 import named                  from 'vinyl-named';
 import path                   from 'path';
 
-// Better image compression
+// Better image compression.
 import imageminJpegRecompress from 'imagemin-jpeg-recompress';
 import imageminPngquant       from 'imagemin-pngquant';
 
-// Load all Gulp plugins into one variable
+// Load all Gulp plugins into one variable.
 const $ = plugins();
 
-// Check for --production flag
+// Check for --production flag.
 const PRODUCTION = !!(yargs.argv.production);
 
-// Load settings from config.yml
+// Load settings from config.yml.
 const { COMPATIBILITY, PORT, PATHS } = loadConfig();
 
 function loadConfig() {
@@ -30,11 +30,11 @@ function loadConfig() {
   return yaml.load(ymlFile);
 }
 
-// Build the "dist" folder by running all of the below tasks
+// Build the "dist" folder by running all of the below tasks.
 gulp.task('build',
  gulp.series(clean, gulp.parallel(sass, lint, javascript, images, sprites)));
 
-// Build the site, run the server, and watch for file changes
+// Build the site, run the server, and watch for file changes.
 gulp.task('default',
   gulp.series('build', watch));
 
@@ -42,8 +42,8 @@ gulp.task('default',
 gulp.task('clean',
   gulp.series(clean));
 
-// Delete the "dist" folder
-// This happens every time a build starts
+// Delete the "dist" folder.
+// This happens every time a build starts.
 function clean(done) {
   rimraf(PATHS.cssDir, done);
   rimraf(PATHS.jsDir, done);
@@ -51,8 +51,8 @@ function clean(done) {
   rimraf(PATHS.spriteDir, done);
 }
 
-// Compile Sass into CSS
-// In production, the CSS is compressed
+// Compile Sass into CSS.
+// In production, the CSS is compressed.
 function sass() {
   return gulp.src(PATHS.src + '/scss/**/*.scss')
     .pipe($.sourcemaps.init())
@@ -63,7 +63,7 @@ function sass() {
     .pipe($.autoprefixer({
       browsers: COMPATIBILITY
     }))
-    // Comment in the pipe below to run UnCSS in production
+    // Comment in the pipe below to run UnCSS in production.
     //.pipe($.if(PRODUCTION, $.uncss(UNCSS_OPTIONS)))
     .pipe($.if(PRODUCTION, $.cleanCss({ compatibility: 'ie9' })))
     .pipe($.if(!PRODUCTION, $.sourcemaps.write('.')))
@@ -109,8 +109,8 @@ let webpackConfig = {
   }
 }
 
-// Combine JavaScript into one file
-// In production, the file is minified
+// Combine JavaScript into one file.
+// In production, the file is minified.
 function javascript() {
   return gulp.src(PATHS.entries)
     .pipe(named())
@@ -123,8 +123,8 @@ function javascript() {
     .pipe(gulp.dest(PATHS.jsDir));
 }
 
-// Copy images to the "dist" folder
-// In production, the images are compressed
+// Copy images to the "dist" folder.
+// In production, the images are compressed.
 function images() {
   return gulp.src(PATHS.src + '/images/**/*.{png,jpeg,jpg,svg,png}')
     .pipe($.if(PRODUCTION, $.imagemin([
@@ -138,7 +138,7 @@ function images() {
     .pipe(gulp.dest(PATHS.imgDir));
 }
 
-// Basic configuration example
+// Sprite configuration.
 var spriteConfig = {
   mode: {
     sprite: {
@@ -180,14 +180,14 @@ var spriteConfig = {
   }
 };
 
-// Create sprite files
+// Create sprite files.
 function sprites() {
   return gulp.src(PATHS.src + '/sprites/**/*')
     .pipe($.svgSprite(spriteConfig))
     .pipe(gulp.dest(PATHS.spriteDir));
 }
 
-// // Start a server with BrowserSync to preview the site in
+// Start a server with BrowserSync to preview the site in.
 // function server(done) {
 //   browser.init({
 //     server: PATHS.dist, port: PORT
@@ -195,13 +195,13 @@ function sprites() {
 //   done();
 // }
 
-// // Reload the browser with BrowserSync
+// Reload the browser with BrowserSync.
 // function reload(done) {
 //   browser.reload();
 //   done();
 // }
 
-// Watch for changes to static assets, pages, Sass, and JavaScript
+// Watch for changes to static assets, sprites, Sass, and JavaScript.
 function watch() {
   gulp.watch(PATHS.src + '/**/*.scss').on('all', sass);
   gulp.watch(PATHS.src + '/**/*.js').on('all', javascript);
