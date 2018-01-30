@@ -1,4 +1,4 @@
-BABY_LOUIE.small:
+MOWGLI.small:
   label: small
   mediaQuery: 'all and (max-width: 320px)'
   weight: 1
@@ -6,7 +6,7 @@ BABY_LOUIE.small:
     - 1x
     - 1.5x
     - 2x
-BABY_LOUIE.smallportrait:
+MOWGLI.smallportrait:
   label: smallportrait
   mediaQuery: 'all and (min-width: 321px) and (max-width: 640px)'
   weight: 2
@@ -14,7 +14,7 @@ BABY_LOUIE.smallportrait:
     - 1x
     - 1.5x
     - 2x
-BABY_LOUIE.medium:
+MOWGLI.medium:
   label: medium
   mediaQuery: 'all and (min-width: 641px) and (max-width: 768px)'
   weight: 3
@@ -22,7 +22,7 @@ BABY_LOUIE.medium:
     - 1x
     - 1.5x
     - 2x
-BABY_LOUIE.mediumportrait:
+MOWGLI.mediumportrait:
   label: mediumportrait
   mediaQuery: 'all and (min-width: 769px) and (max-width: 1024px)'
   weight: 4
@@ -30,7 +30,7 @@ BABY_LOUIE.mediumportrait:
     - 1x
     - 1.5x
     - 2x
-BABY_LOUIE.large:
+MOWGLI.large:
   label: large
   mediaQuery: 'all and (min-width: 1025px) and (max-width: 1519px)'
   weight: 5
@@ -38,7 +38,7 @@ BABY_LOUIE.large:
     - 1x
     - 1.5x
     - 2x
-BABY_LOUIE.xlarge:
+MOWGLI.xlarge:
   label: extra large
   mediaQuery: 'all and (min-width: 1520px) and (max-width: 1639px)'
   weight: 6
@@ -46,7 +46,7 @@ BABY_LOUIE.xlarge:
     - 1x
     - 1.5x
     - 2x
-BABY_LOUIE.xxlarge:
+MOWGLI.xxlarge:
   label: extra extra large
   mediaQuery: 'all and (min-width: 1640px)'
   weight: 7

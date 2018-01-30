@@ -7,7 +7,7 @@ version: 1.0.0
 core: 8.x
 screenshot: screenshot.png
 libraries:
-  - BABY_LOUIE/global
+  - MOWGLI/global
 libraries-override:
   # Remove parent foundation.
   louie/foundation: false

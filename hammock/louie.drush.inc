@@ -88,7 +88,7 @@ function drush_louie($machine_name = NULL, $name = NULL) {
   $sub_theme_path = drush_normalize_path(drush_get_context('DRUSH_DRUPAL_ROOT') . '/' . $sub_theme_path . '/' . $machine_name);
 
   // ***************************************************
-  // Error check directories, then copy BABY_LOUIE.
+  // Error check directories, then copy MOWGLI.
   // ***************************************************
 
   // Ensure the destination directory (not the sub-theme folder) exists.
@@ -99,16 +99,16 @@ function drush_louie($machine_name = NULL, $name = NULL) {
   }
 
   // Ensure the STARTERKIT directory exists.
-  $starterkit_path = drush_normalize_path(drush_get_context('DRUSH_DRUPAL_ROOT') . '/' . drupal_get_path('theme', 'louie') . '/basket/BABY_LOUIE');
+  $starterkit_path = drush_normalize_path(drush_get_context('DRUSH_DRUPAL_ROOT') . '/' . drupal_get_path('theme', 'louie') . '/hammock/MOWGLI');
   if (!is_dir($starterkit_path)) {
-    return drush_set_error('LOUIE_BABY_LOUIE_NOT_FOUND', dt('The BABY_LOUIE directory was not found in "!directory"', array('!directory' => dirname($starterkit_path))));
+    return drush_set_error('LOUIE_MOWGLI_NOT_FOUND', dt('The MOWGLI directory was not found in "!directory"', array('!directory' => dirname($starterkit_path))));
     // Allow localize.drupal.org to pick up the string to translate.
-    if (FALSE) t('The BABY_LOUIE directory was not found in "!directory"', array('!directory' => dirname($starterkit_path)));
+    if (FALSE) t('The MOWGLI directory was not found in "!directory"', array('!directory' => dirname($starterkit_path)));
   }
 
-  drush_print(dt('Copying files from baby louie…'));
+  drush_print(dt('Copying files from MOWGLI…'));
   // Allow localize.drupal.org to pick up the string to translate.
-  if (FALSE) t('Copying files from baby louie…');
+  if (FALSE) t('Copying files from MOWGLI…');
 
   // Make a fresh copy of the original starter kit.
   if (!drush_op('drush_copy_dir', $starterkit_path, $sub_theme_path)) {
@@ -135,15 +135,15 @@ function drush_louie($machine_name = NULL, $name = NULL) {
     array('pattern' => "/version: '[^']+'\n/", 'replacement' => ''),
     array('pattern' => '/datestamp: \d+\n/', 'replacement' => ''),
   );
-  drush_op('louie_file_replace', $sub_theme_path . '/BABY_LOUIE.info.yml', $info_strings, $info_regexs);
+  drush_op('louie_file_replace', $sub_theme_path . '/MOWGLI.info.yml', $info_strings, $info_regexs);
 
   // ***************************************************
-  // Replace BABY_LOUIE in file names and contents.
+  // Replace MOWGLI in file names and contents.
   // ***************************************************
 
-  drush_print(dt('Replacing "BABY_LOUIE" in all files…'));
+  drush_print(dt('Replacing "MOWGLI" in all files…'));
   // Allow localize.drupal.org to pick up the string to translate.
-  if (FALSE) t('Replacing "BABY_LOUIE" in all files…');
+  if (FALSE) t('Replacing "MOWGLI" in all files…');
 
   // Iterate through the sub-theme directory finding files to filter.
   $directoryIterator = new \RecursiveDirectoryIterator($sub_theme_path);
@@ -162,7 +162,7 @@ function drush_louie($machine_name = NULL, $name = NULL) {
     }
     else {
       // Only return Twig templates or files with "STARTERKIT" in their name.
-      return strpos($current->getFilename(), '.twig') !== FALSE || strpos($current->getFilename(), 'BABY_LOUIE') !== FALSE;
+      return strpos($current->getFilename(), '.twig') !== FALSE || strpos($current->getFilename(), 'MOWGLI') !== FALSE;
     }
   });
   $iterator = new \RecursiveIteratorIterator($starterKitFilter);
@@ -176,12 +176,12 @@ function drush_louie($machine_name = NULL, $name = NULL) {
   $sub_theme_files['theme-settings.php'] = $sub_theme_path . '/theme-settings.php';
 
   foreach ($sub_theme_files as $filename) {
-    // Replace all occurrences of 'STARTERKIT' with the machine name of our sub theme.
-    drush_op('louie_file_replace', $filename, array('BABY_LOUIE' => $machine_name));
+    // Replace all occurrences of 'MOWGLI' with the machine name of our sub theme.
+    drush_op('louie_file_replace', $filename, array('MOWGLI' => $machine_name));
 
-    // Rename all files with STARTERKIT in their name.
-    if (strpos($filename, 'BABY_LOUIE') !== FALSE) {
-      drush_op('rename', $filename, str_replace('BABY_LOUIE', $machine_name, $filename));
+    // Rename all files with MOWGLI in their name.
+    if (strpos($filename, 'MOWGLI') !== FALSE) {
+      drush_op('rename', $filename, str_replace('MOWGLI', $machine_name, $filename));
     }
   }
 
@@ -189,12 +189,12 @@ function drush_louie($machine_name = NULL, $name = NULL) {
   // Notify user of the newly created theme.
   // ***************************************************
 
-  drush_print(dt('Baby Louie was born and named "!name" created in: !path', array(
+  drush_print(dt('MOWGLI was born and named "!name" created in: !path', array(
     '!name' => $name,
     '!path' => $sub_theme_path,
   )));
   // Allow localize.drupal.org to pick up the string to translate.
-  if (FALSE) t('Baby Louie for "!name" created in: !path', array('!name' => $name, '!path' => $sub_theme_path));
+  if (FALSE) t('MOWGLI for "!name" created in: !path', array('!name' => $name, '!path' => $sub_theme_path));
 }
 
 
