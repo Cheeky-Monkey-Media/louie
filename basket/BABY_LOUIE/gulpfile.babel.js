@@ -11,14 +11,13 @@ import webpackStream          from 'webpack-stream';
 import webpack2               from 'webpack';
 import named                  from 'vinyl-named';
 import path                   from 'path';
-import sassGlob               from 'gulp-sass-glob';
+import merge                  from 'merge-stream';
 
 // Better image compression.
 import imageminJpegRecompress from 'imagemin-jpeg-recompress';
 import imageminPngquant       from 'imagemin-pngquant';
 
 // Load all Gulp plugins into one variable
->>>>>>> Added sass glob, moved some scss to utilites folder
 const $ = plugins();
 
 // Check for --production flag.
@@ -65,9 +64,9 @@ function clean(done) {
 // Compile Sass into CSS.
 // In production, the CSS is compressed.
 function sass() {
-  return gulp.src(PATHS.src + '/scss/**/*.scss')
+  return gulp.src(`${PATHS.src}/scss/**/*.scss`)
     .pipe($.sourcemaps.init())
-    .pipe(sassGlob())
+    .pipe($.sassGlob())
     .pipe($.sass({
       includePaths: PATHS.sass
     })
@@ -89,7 +88,7 @@ function lint() {
   // So, it's best to have gulp ignore the directory as well.
   // Also, Be sure to return the stream from the task;
   // Otherwise, the task may end before the stream has finished.
-  return gulp.src([PATHS.src + '/js/**/*.js','!node_modules/**'])
+  return gulp.src([`${PATHS.src}/js/**/*.js`,'!node_modules/**'])
     // eslint() attaches the lint output to the "eslint" property
     // of the file object so it can be used by other modules.
     .pipe($.eslint())
@@ -138,7 +137,7 @@ function javascript() {
 // Copy images to the "dist" folder.
 // In production, the images are compressed.
 function images() {
-  return gulp.src(PATHS.src + '/images/**/*.{png,jpeg,jpg,svg,png}')
+  return gulp.src(`${PATHS.src}/images/**/*.{png,jpeg,jpg,svg,png}`)
     .pipe($.if(PRODUCTION, $.imagemin([
       $.imagemin.gifsicle(),
       $.imagemin.jpegtran(),
@@ -150,53 +149,72 @@ function images() {
     .pipe(gulp.dest(PATHS.imgDir));
 }
 
-// Sprite configuration.
-var spriteConfig = {
-  mode: {
-    sprite: {
-      mode: 'css',
-      // Change below to remove cache-busting feature.
-      bust: false,
-      render: {
-        scss: {
-          template: './src/sprite-templates/sprite-template.scss',
-          dest: '_sprite.scss'
-        }
-      },
-      example: true
-    },
-    datauri: {
-      mode: 'css',
-      // Change below to remove cache-busting feature.
-      bust: false,
-      render: {
-        scss: {
-          template: './src/sprite-templates/datauri-template.scss',
-          dest: '_datauri.scss'
-        }
-      },
-      variables: {
-        datauri : function() {
-          return function(svg, render) {
-            return encodeURI(render(svg));
+// Create sprite files.
+function sprites(done) {
+  // Get all folders inside `${PATHS.src}/sprites/`, if you need specific
+  // folders maybe you should wrap them inside another.
+  var folders = getFolders(`${PATHS.src}/sprites/`);
+
+  const tasks = folders.map(function(folder) {
+    // .map runs this action on each folder and returns the stream
+    return gulp.src(`${PATHS.src}/sprites/${folder}/**/*.svg`)
+      // Put config here so we can change things based on folder name.
+      .pipe($.svgSprite(
+        {
+          mode: {
+            sprite: {
+              mode: 'css',
+              // Change below to remove cache-busting feature.
+              bust: false,
+              render: {
+                scss: {
+                  template: './src/sprite-templates/sprite-template.scss',
+                  dest: `_${folder}-sprite.scss`
+                }
+              },
+              sprite: `${folder}-sprite.svg`,
+              example: {
+                dest: `${folder}-sprite.html`
+              }
+            },
+            datauri: {
+              mode: 'css',
+              // Change below to remove cache-busting feature.
+              bust: false,
+              render: {
+                scss: {
+                  template: './src/sprite-templates/datauri-template.scss',
+                  dest: `_${folder}-datauri.scss`
+                }
+              },
+              sprite: `${folder}-sprite.svg`,
+              variables: {
+                datauri : function() {
+                  return function(svg, render) {
+                    return encodeURI(render(svg));
+                  }
+                }
+              },
+              example: {
+                dest: `${folder}-datauri.html`
+              }
+            },
+            symbol: {
+              inline: true,
+              prefix: 'icon-%s',
+              example: {
+                dest: `${folder}-symbols.html`
+              },
+              sprite: `${folder}-symbols.svg`
+            }
           }
         }
-      },
-      example: true
-    },
-    symbol: {
-      inline: true,
-      prefix: 'icon-%s',
-      example: true
-    }
-  }
-};
+      ))
+      .pipe(gulp.dest(`${PATHS.spriteDir}/${folder}`));
+  });
 
-// Create sprite files.
-function sprites() {
-  return gulp.src(PATHS.src + '/sprites/**/*')
-    .pipe($.svgSprite(spriteConfig))
-    .pipe(gulp.dest(PATHS.spriteDir));
+  // Return a single stream so gulp can run properly.
+  return merge(tasks);
 }
 
 // Start a server with BrowserSync to preview the site in.
@@ -215,8 +233,17 @@ function sprites() {
 
 // Watch for changes to static assets, sprites, Sass, and JavaScript.
 function watch() {
-  gulp.watch(PATHS.src + '/**/*.scss').on('all', sass);
-  gulp.watch(PATHS.src + '/**/*.js', gulp.series(javascript, lint));
-  gulp.watch(PATHS.src + '/images/**/*').on('all', images);
-  gulp.watch(PATHS.src + '/sprites/**/*').on('all', sprites);
+  gulp.watch(`${PATHS.src}/**/*.scss`).on('all', sass);
+  gulp.watch(`${PATHS.src}/**/*.js`, gulp.series(javascript, lint));
+  gulp.watch(`${PATHS.src}/images/**/*`).on('all', images);
+  gulp.watch(`${PATHS.src}/sprites/**/*`).on('all', sprites);
+}
+
+// Utility function.
+// Returns an array of subfolders in `dir`.
+function getFolders(dir) {
+  return fs.readdirSync(dir)
+    .filter(function(file) {
+      return fs.statSync(path.join(dir, file)).isDirectory();
+    });
 }
