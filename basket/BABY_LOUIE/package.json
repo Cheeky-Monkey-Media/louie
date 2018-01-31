@@ -5,7 +5,6 @@
   "main": "gulpfile.js",
   "scripts": {
     "postinstall": "find node_modules/ -name '*.info' -type f -delete",
-    "degit": "rm -r .git;",
     "start": "gulp",
     "build": "gulp build --production",
     "watch": "gulp watch",

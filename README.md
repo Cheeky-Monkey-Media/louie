@@ -18,10 +18,6 @@ From inside the Louie subtheme directory, run `npm run build` for a clean build 
 
 Once you have finished theming the first page (home/standard) - take a screenshot and replace screenshot.png with a true representation of the theme.
 
-## Things to consider
-
-As this is a theme, you should remove the .git folder after cloning. Then, commit with the rest of your project. An easy way to do this is by running `npm run degit`.
-
 ## Todos
 
 - Test everything. Break somethings. Fix important things.
