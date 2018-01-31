@@ -125,7 +125,8 @@ function drush_louie($machine_name = NULL, $name = NULL) {
   if (FALSE) t('Updating .info.yml file…');
 
   $info_strings = array(
-    ': Louie' => ': ' . $name,
+    ': Mowgli' => ': ' . $name,
+    ': A Louie subtheme "starterkit"' => ': A Louie subtheme',
   );
   if ($description = drush_get_option('description')) {
     $info_strings['Read the <a href="https://drupal.org/node/873778">online docs</a> or the included README.txt on how to create a theme with Zen.'] = $description;

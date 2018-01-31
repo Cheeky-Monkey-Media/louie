@@ -1,7 +1,7 @@
-name: Louie
+name: Mowgli
 type: theme
 base theme: louie
-description: Custom theme for D8
+description: A Louie subtheme "starterkit"
 package: Core
 version: 1.0.0
 core: 8.x
