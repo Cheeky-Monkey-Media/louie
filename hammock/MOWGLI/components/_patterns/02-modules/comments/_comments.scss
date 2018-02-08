@@ -1,0 +1,21 @@
+.ckeditor_links,
+.filter-wrapper {
+  display: none !important;
+}
+
+.form-actions {
+  text-align: right;
+}
+
+.comment-delete,
+.comment-edit,
+.comment-reply {
+  a {
+    @include button-hollow;
+  }
+}
+
+.field-name-comment-body {
+  border: 1px solid $medium-gray;
+  margin-bottom: 1rem;
+}

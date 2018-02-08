@@ -1,0 +1,39 @@
+header {
+  h3 {
+    line-height: rem-calc(30);
+    margin-top: -3px;
+    margin-bottom: 0;
+  }
+}
+
+.title {
+  line-height: rem-calc(26px);
+}
+
+.hms {
+  font-weight: 700;
+}
+
+.in-stock {
+  color: $primary-color;
+}
+
+.low-stock {
+  color: $alert-color;
+}
+
+.special {
+  font-family: $font-special-elite;
+  font-weight: 400;
+}
+
+.m-green {
+  color: $primary-color
+}
+
+.m-white {
+  color: $white;
+  a {
+    color: inherit;
+  }
+}

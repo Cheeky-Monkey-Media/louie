@@ -1,0 +1,125 @@
+.main-menu-container {
+  background: #000 url(../images/bg-nav.png) repeat;
+
+  .menu {
+    position: initial;
+  }
+
+  .main-menu > li {
+    > a {
+      color: #fff;
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+      position: relative;
+
+      &:hover {
+        color: darken($white, 30%);
+      }
+    }
+
+    &.mega-menu .dropdown > li > a {
+
+      &::before {
+        @include css-triangle(8px, $primary-color, up);
+        position: absolute;
+        bottom: -1px;
+        left: 50%;
+        margin-left: -20px;
+        opacity: 0;
+        transition-delay: 2s;
+        transition: opacity 0s;
+      }
+
+      &:hover {
+        &::before {
+          opacity: 1;
+          transition: opacity 0s;
+        }
+      }
+    }
+  }
+
+  a {
+    text-transform: uppercase;
+    font-family: $font-open-sans-condensed;
+    font-weight: 700;
+  }
+
+  .link-store {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+
+    a:hover::before {
+      display: none;
+    }
+  }
+
+}
+
+//.dropdown-pane {
+//  a {
+//    color: $black;
+//    text-transform: uppercase;
+//    font: 700 rem-calc(14px) $font-open-sans-condensed;
+//  }
+//}
+
+.main-menu-container {
+
+  [data-toggle="mega-menu-movies"] + .dropdown-pane {
+    //visibility: visible; // Use to debug
+  }
+
+  .dropdown-pane {
+    border: 0;
+    border-top: $primary-color 5px solid;
+    background: rgba(0, 0, 0, .9);
+    width: 100%;
+    margin: 0 auto !important;
+    left: 0% !important;
+    right: 0% !important;
+    display:block;
+    z-index: 100;
+    //position: relative;
+
+    > .row {
+      max-width: 75rem;
+      margin: 0 auto;
+    }
+
+    h3:not(.card-title) {
+      font: 700 rem-calc(24px) $font-open-sans-condensed;
+      color: $primary-color;
+    }
+
+    a {
+      color: $white;
+    }
+  }
+
+  .mega-menu .menu {
+    background: none;
+  }
+
+  .mega-menu > a::after {
+    display: block;
+    width: 0;
+    height: 0;
+    border: inset 0.4em;
+    content: '';
+    border-bottom-width: 0;
+    border-top-style: solid;
+    border-color: $primary-color transparent transparent;
+    position: relative;
+    top: 0.4em;
+    display: inline-block;
+    float: right;
+    margin-left: 1em;
+  }
+}
+
+.menu.vertical.flush-left {
+  a {
+    padding-left: 0;
+  }
+}

@@ -17,15 +17,12 @@ stylesheets-remove:
   - core/modules/system/css/system.theme.css
 
 regions:
+  topbar: 'Topbar'
   header: 'Header'
-  help: 'Help'
-  page_top: 'Page top'
-  page_bottom: 'Page bottom'
-  breadcrumb: 'Breadcrumb'
   highlighted: 'Highlighted'
-  primary_menu: 'Primary menu'
-  secondary_menu: 'Secondary menu'
-  featured: 'Featured'
+  help: 'Help'
+  breadcrumb: 'Breadcrumb'
+
   content: 'Content'
   sidebar_first: 'Sidebar first'
   sidebar_second: 'Sidebar second'

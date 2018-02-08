@@ -1,0 +1,25 @@
+{# @Component
+name: Colors
+description: Colors are used throughout the site, but should be limited to this palette.
+group: Base
+samples:
+  default:
+    colors:
+      - {color: '#54c7fc', scss_name: '$color-maya_blue'}
+      - {color: '#ffcc00', scss_name: '$color-tangerine'}
+      - {color: '#ff9600', scss_name: '$color-safety_orange'}
+      - {color: '#ff2952', scss_name: '$color-awesome'}
+      - {color: '#0075ff', scss_name: '$color-brandeis_blue'}
+      - {color: '#45db5e', scss_name: '$color-ufo_green'}
+      - {color: '#ff3824', scss_name: '$color-red_orange'}
+      - {color: '#8f8f94', scss_name: '$color-oslo_gray'}
+#}
+
+<ul style="display:flex; flex-wrap: wrap;">
+  {% for color in colors %}
+    <li>
+      <span class="swatch" style="background: {{ color.color }}; display: block; width: 7em; height: 7em; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1); display: inline-block;"></span>
+      <span class="label">{{ color.scss_name }}</span><br>{{ color.color }}</span>
+    </li>
+  {% endfor %}
+</ul>

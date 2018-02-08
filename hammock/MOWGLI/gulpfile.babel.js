@@ -64,7 +64,7 @@ function clean(done) {
 // Compile Sass into CSS.
 // In production, the CSS is compressed.
 function sass() {
-  return gulp.src(`${PATHS.src}/scss/**/*.scss`)
+  return gulp.src(`${PATHS.sassDir}/**/*.scss`)
     .pipe($.sourcemaps.init())
     .pipe($.sassGlob())
     .pipe($.sass({
@@ -233,7 +233,7 @@ function sprites(done) {
 
 // Watch for changes to static assets, sprites, Sass, and JavaScript.
 function watch() {
-  gulp.watch(`${PATHS.src}/**/*.scss`).on('all', sass);
+  gulp.watch(`${PATHS.sassDir}/**/*.scss`).on('all', sass);
   gulp.watch(`${PATHS.src}/**/*.js`, gulp.series(javascript, lint));
   gulp.watch(`${PATHS.src}/images/**/*`).on('all', images);
   gulp.watch(`${PATHS.src}/sprites/**/*`).on('all', sprites);

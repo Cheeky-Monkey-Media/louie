@@ -1,0 +1,184 @@
+.card {
+  position: relative;
+
+  .card-title {
+    text-transform: uppercase;
+    color: $white;
+    font: 700 rem-calc(18) $font-open-sans-condensed;
+    margin: 0;
+    line-height: 1rem;
+
+    a {
+      color: inherit;
+    }
+  }
+
+  .card-subtitle {
+    margin: 0;
+    font: 700 rem-calc(14) $font-open-sans-condensed;
+    text-transform: uppercase;
+  }
+
+  &:hover {
+    .teaser {
+      max-height: 300px;
+      opacity: 1;
+    }
+  }
+
+}
+
+
+
+.card-img-overlay {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  background: rgba($black, .9);
+  padding: 10px;
+
+  .teaser {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.8s, opacity 0.8s;
+    opacity: 0;
+    margin: .5rem 0 0 0;
+    font-size: rem-calc(14px);
+  }
+}
+
+.card-author {
+  background-color: #111111;
+  padding: .5rem 2rem 2rem 2rem;
+  border-top: 6px solid $primary-color;
+}
+
+.card-follow {
+  border: 3px solid $dark-gray;
+  padding: 3px;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: $primary-color;
+  //font-family: $font-family-sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  margin-bottom: 1rem;
+
+  .m-white {
+    color: white;
+    text-transform: none;
+    margin-left: 10px;
+    font-weight: 400px;
+  }
+
+}
+
+.card.product {
+  border: 0;
+  color: $black;
+
+  h2 {
+    font-size: rem-calc(18px);
+    color: $black;
+    margin: 0;
+  }
+
+  a img {
+    margin-bottom: 2rem;
+  }
+
+  .commerce-product-field-commerce-price {
+    font-size: rem-calc(24px);
+  }
+
+}
+
+.card-user {
+  border: none;
+
+  .card-divider {
+    font-size: rem-calc(22px);
+    background-color: transparent;
+    padding: 0;
+
+    small {
+      color: $primary-color;
+    }
+  }
+
+  .card-section {
+    padding: 0;
+  }
+}
+
+.on-deck {
+  h3 {
+    margin-bottom: 0;
+    font-size: rem-calc(18px);
+  }
+
+  .meta {
+    text-transform: uppercase;
+    font: 700 0.875rem "Open Sans Condensed", sans-serif;
+  }
+}
+
+.grid-list-cards {
+
+  figure {
+    position: relative;
+  }
+
+  .flag-carbonite-freeze-chamber {
+    position: absolute;
+    bottom: .5rem;
+    right: .5rem;
+
+     .text {
+       display: none;
+     }
+  }
+}
+
+.list .grid-list-cards {
+  @include media-object-container;
+  margin-bottom: 2rem;
+
+  figure {
+    @include media-object-section;
+    min-width: 228px;
+  }
+
+  .content {
+    @include media-object-section;
+  }
+}
+
+.grid .grid-list-cards {
+  @include card-container;
+  margin-bottom: 2rem;
+
+  figure {
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+    .flag-carbonite-freeze-chamber {
+      top: .5rem;
+      bottom: auto;
+    }
+  }
+
+  h3 {
+    font: 700 rem-calc(18) $font-open-sans-condensed;
+  }
+
+  .content {
+    @extend .card-img-overlay;
+    width: 100%;
+    padding: .5rem;
+  }
+}

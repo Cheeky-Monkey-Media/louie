@@ -1,0 +1,23 @@
+{# @Component
+name: Podcast Player
+group: Modules
+samples:
+  AssetExample:
+    img_url: ~asset('/web/themes/brawl/components/modules/player/bg-nav.png')
+    text: Bla bla bla
+#}
+<section style="background: url('{{ img_url }}')">
+
+  <div class="grid-container">
+
+
+
+
+    {{ text }}
+
+    <h2>{{ title }}</h2>
+    <small>{{ date }}</small>
+    {{ image }}
+
+  </div>
+</section>

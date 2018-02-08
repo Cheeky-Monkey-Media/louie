@@ -1,0 +1,82 @@
+.hero {
+
+  .primary {
+    float: left;
+    overflow: hidden;
+    .card-title {
+      font-size: px-to-rem(30);
+
+      a {
+        font-size: px-to-rem(20);
+        color: $primary-color;
+        position: relative;
+        padding-left: 0;
+        transition: all .2s ease-in-out;
+        &:before {
+          content: '\00bb';
+          position: absolute;
+          left: 0;
+          top: 2px;
+          opacity: 0;
+          transition: opacity .3s ease-in-out;
+        }
+      }
+
+      a:hover {
+        padding-left: 15px;
+        transition: all .4s ease-in-out;
+        &:before {
+          opacity: 1;
+          transition: opacity .3s ease-in-out;
+        }
+      }
+
+    }
+
+    img {
+      width: 100%;
+    }
+
+    @include breakpoint(large up) {
+      width: 620px;
+      height: 330px;
+    }
+
+    @include breakpoint(xlarge up) {
+      width: 800px;
+      height: 429px;
+    }
+  }
+
+
+  .secondary {
+
+
+    @include breakpoint(large only) {
+      .view-posts-blocks {
+        width: 50%;
+        float: left;
+      }
+      .view-display-id-attachment_2 {
+        padding-right: 1rem;
+      }
+      .view-display-id-attachment_1 {
+        padding-left: 1rem;
+      }
+    }
+
+    @include breakpoint(large up) {
+      width: 298px;
+      float: right;
+    }
+
+    @include breakpoint(xlarge up) {
+      width: 384px;
+    }
+
+    .icons {
+      font-size: 190%;
+      line-height: 40px;
+    }
+  }
+}

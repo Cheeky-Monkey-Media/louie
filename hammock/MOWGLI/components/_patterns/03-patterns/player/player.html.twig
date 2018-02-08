@@ -1,0 +1,26 @@
+{# @Component
+name: Podcast Player
+group: patterns
+samples:
+  Full:
+    title: EP 12 - Prom Season Special
+    date: June 15th 2017
+    img_url: web/themes/brawl/components/2-patterns/player/trou-de-culte-logo.jpg
+#}
+
+<div class="media-object">
+  <div class="media-object-section">
+    <h2>{{ title }}</h2>
+    <date>{{ date }}</date>
+
+    <button>Play</button>
+
+
+
+  </div>
+  <div class="media-object-section">
+    <div class="thumbnail">
+      <img src="{{ img_url }}">
+    </div>
+  </div>
+</div>

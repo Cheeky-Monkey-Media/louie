@@ -1,0 +1,217 @@
+{%
+
+  import "@macros/icons.twig" as icons
+
+%}
+
+
+<section class="top-bar">
+
+  <div class="top-bar-left">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li>{{ logo }}</li>
+      <li>
+        <button type="button" class="button menu-icon" data-toggle="offCanvas">
+          <span class="show-for-sr">Open Menu</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <div class="top-bar-right">
+
+    {{ content }}
+
+    <ul class="menu">
+      <li>{{ drupal_form('Drupal\\search\\Form\\SearchBlockForm') }}</li>
+      {% if logged_in %}
+      <li>{{ icons.button('gender', 'friends') }}</li>
+      <li>{{ icons.button('bubble', 'message') }}</li>
+      <li>{{ icons.button('bell', 'notification') }}</li>
+      <li>
+        <div class="button-group">
+
+            {{ drupal_entity('user', user.id, 'topbar') }}
+
+          <button type="button" class="dropdown button" data-toggle="user-menu">
+            <span class="show-for-sr">{{ 'User Menu'|trans }}</span>
+          </button>
+        </div>
+        <div class="dropdown-pane" id="user-menu" data-dropdown data-auto-focus="true">
+          {{ drupal_menu('account') }}
+        </div>
+      </li>
+      {% else %}
+      <li>{{ drupal_menu('account') }}</li>
+      {% endif %}
+    </ul>
+  </div>
+
+</section>
+
+{# <div class="top-bar">
+
+    {# {{ kint() }} #}
+
+		{# <?php if($domain_machine_name == 'store'):
+
+			print l('Back to HappyBrawl.com', 'node/32', array('attributes' => array('class' => array('m-white', 'float-left', 'p-a-0', 'm-a-0'))));
+
+			endif; ?>
+
+      {{ user.account.name }}
+
+
+
+
+    <div class="row">
+      <div class="top-bar-left">
+
+				<ul class="menu">
+				  <li>
+            {{ logo }}
+            <a href="<?php print $front_page ?>">
+              {# <?php print $hb_logo; ?>
+            </a>
+					</li>
+				</ul>
+
+      </div>
+
+      <div class="top-bar-right">
+        <ul class="dropdown menu" data-dropdown-menu>
+
+
+          {{ page.search }}
+
+
+					{# <?php if(user_is_logged_in()): ?>
+
+					<li class="p-a-0 friends">
+
+
+            <button class="button friend" type="button" data-toggle="friends-count">
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-follow" /></svg>
+              {# <?php if($friend_count): ?><span class="badge alert" id="friendCount"><?php print $friend_count; ?></span><?php endif; ?>
+            </button>
+
+            <div class="dropdown-pane" id="friends-count" data-h-offset="-85" data-position="bottom" data-alignment="right" data-dropdown data-close-on-click="true" data-auto-focus="true">
+              <h1>Hello</h1>
+            </div>
+
+
+					</li>
+
+					<li class="p-a-0 messages">
+            <button class="button messages" type="button" data-toggle="messages">
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-bubble" /></svg>
+              {# <?php if($messages_count): ?><span class="badge alert" id="friendCount"><?php print $messages_count; ?></span><?php endif; ?>
+            </button>
+            <div class="dropdown-pane bottom" id="messages" data-position="bottom" data-h-offset="-42" data-alignment="right" data-dropdown data-close-on-click="true" data-auto-focus="true">
+              {# <?php // print $messages_latest; ?>
+
+              <div class="media-object" data-toggle="tread-1">
+                <div class="media-object-section">
+                  <div class="thumbnail">
+
+                  </div>
+                </div>
+                <div class="media-object-section">
+                  <h4>Fun Time Jam Band</h4>
+                  <p>Richard: But yeah, awesome tracks, love the bass drum....</p>
+                </div>
+              </div>
+              <div data-toggler="tread-1" data-animate="slide-in-right slide-out-right" id="tread-1" class="fast tread-messages" style="display: none; padding: 1rem;">
+                <button class="button" type="button" data-toggle="tread-1">Back</button>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a tellus ut urna bibendum aliquam nec sit amet felis. Aliquam ium sit amet ipsum venenatis, tincidunt auctor augue.</p>
+                <input type="text" placeholder="Reply to... @add name" style="margin: -1rem; width: 100%;">
+              </div>
+
+              <div class="media-object">
+                <div class="media-object-section">
+                  <div class="thumbnail">
+
+                  </div>
+                </div>
+                <div class="media-object-section">
+                  <h4>Janick Chouinard.</h4>
+                  <p>I forgot to put the thing in the basement...</p>
+                </div>
+              </div>
+
+              <div class="media-object">
+                <div class="media-object-section">
+                  <div class="thumbnail">
+
+                  </div>
+                </div>
+                <div class="media-object-section">
+                  <h4>Sebas Theriault.</h4>
+                  <p>Ha ha, thanks</p>
+                </div>
+              </div>
+
+              <textarea placeholder="@name Write a new message..."></textarea>
+              <button type="button" class="button primary float-right">Send</button>
+
+            </div>
+
+					</li>
+
+					<li class="p-a-0 p-r-2 notification">
+
+            <button class="button friend" type="button" data-toggle="notification">
+              <span aria-describedby="notificationsCount" class="show-for-sr">Notifications</span>
+              <svg class="icon" aria-hidden="true"><use xlink:href="#icon-bell" /></svg>
+              <span class="badge alert" id="messageCount">4</span>
+              {# <?php if($friend_count): ?><span class="badge alert" id="friendCount"><?php print $friend_count; ?></span><?php endif; ?>
+            </button>
+
+            <div class="dropdown-pane bottom" id="notification" data-position="bottom" data-alignment="right" data-dropdown data-close-on-click="true"  data-auto-focus="true">
+
+              <div class="media-object">
+                <div class="media-object-section">
+                  <div class="thumbnail">
+
+                  </div>
+                </div>
+                <div class="media-object-section">
+                  This is where friendship list would go.
+                </div>
+              </div>
+
+            </div>
+
+					</li>
+
+          <li class="cart">
+            <button class="button" href="<?php print url('/cart'); ?>">
+              <span aria-describedby="cartCount" class="show-for-sr">Cart</span>
+              <svg class="icon cart" aria-hidden="true"><use xlink:href="#icon-cart" /></svg>
+              {# <?php if($cart_count): ?><span class="badge alert" id="cartCount"><?php print $cart_count; ?></span><?php endif; ?>
+            </button>
+          </li>
+
+          <li class="p-r-0 user">
+
+            <a href="<?php print url('/user'); ?>" class="user button" data-toggle="user-menu"><?php print $user_avatar; ?></a>
+            <ul class="menu">
+              {# <?php print $user_menu; ?>
+            </ul>
+
+          </li>
+
+					{# <?php else: ?>
+					<li>
+						<?php print l('Log In', 'user', array('attributes' => array('class' => array('button')))); ?>
+					</li>
+					<?php endif; ?>
+
+					<li class="hide-for-large">
+						<button type="button" class="button hamburger link collapsed" data-toggle="offCanvas_mobile"><span></span><span></span><span></span><span></span><span class="show-for-sr">Mobile Menu</span></button>
+					</li>
+
+        </ul>
+      </ul>
+    </div>
+  </div> #}

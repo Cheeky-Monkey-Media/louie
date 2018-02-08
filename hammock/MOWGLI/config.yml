@@ -11,6 +11,8 @@ COMPATIBILITY:
 PATHS:
   # Path to dist folder.
   src: "src"
+  # Path to source sass folder
+  sassDir: "components"
   # Path to css folder.
   cssDir: "css"
   # Path to js folder.

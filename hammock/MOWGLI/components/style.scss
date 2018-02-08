@@ -1,0 +1,11 @@
+@import "_utilities/custom-settings";
+
+// Set our custom foundation preference then include it in our global styles.
+@import "_utilities/foundation-custom";
+@include foundation-everything;
+
+// Auto-import all components with sass glob
+@import "base/**/*.scss";
+@import "modules/**/*.scss";
+@import "layouts/**/*.scss";
+

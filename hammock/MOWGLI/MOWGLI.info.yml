@@ -1,7 +1,7 @@
 name: Mowgli
 type: theme
 base theme: louie
-description: A Louie subtheme "starterkit"
+description: A Louie subtheme "starterkit" <p class="messages color-error">This theme <em><b>requires</b></em> the <a href="https://www.drupal.org/project/components">Components Libraries module</a> in order to function properly.</p>
 package: Core
 version: 1.0.0
 core: 8.x
@@ -11,6 +11,9 @@ libraries:
 libraries-override:
   # Remove parent foundation.
   louie/foundation: false
+  classy/base: false
+  classy/messages: false
+  core/normalize: false
 
 ckeditor_stylesheets:
   - css/dist/ckeditor.css
@@ -19,16 +22,30 @@ stylesheets-remove:
   - core/assets/vendor/normalize-css/normalize.css
   - core/modules/system/css/system.theme.css
 
+component-libraries:
+  base:
+    paths:
+      - components/01-base
+  modules:
+    paths:
+      - components/02-modules
+  patterns:
+    paths:
+      - components/03-patterns
+  layouts:
+    paths:
+      - components/04-layouts
+  pages:
+    paths:
+      - components/05-pages
+
 regions:
+  topbar: 'Topbar'
   header: 'Header'
-  help: 'Help'
-  page_top: 'Page top'
-  page_bottom: 'Page bottom'
-  breadcrumb: 'Breadcrumb'
   highlighted: 'Highlighted'
-  primary_menu: 'Primary menu'
-  secondary_menu: 'Secondary menu'
-  featured: 'Featured'
+  help: 'Help'
+  breadcrumb: 'Breadcrumb'
+
   content: 'Content'
   sidebar_first: 'Sidebar first'
   sidebar_second: 'Sidebar second'
