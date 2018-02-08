@@ -27,6 +27,7 @@
  *   comment/reply/12345).
  *
  * Regions:
+ * - page.topbar: Items in the topbar region.
  * - page.header: Items for the header region.
  * - page.primary_menu: Items for the primary menu region.
  * - page.secondary_menu: Items for the secondary menu region.
@@ -42,134 +43,34 @@
  * @see html.html.twig
  */
 #}
-
 <div class="off-canvas-wrapper">
-  <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
+  <div class="off-canvas-content" data-off-canvas-content>
+    <div class="grid-y medium-grid-frame">
 
-    <div class="off-canvas-content" data-off-canvas-content>
-      <div class="container">
-        <div class="page page-internal">
+      {{ page.topbar }}
 
-          <header class="site-header clearfix" role="banner">
-            <div class="row">
-              <div class="columns">
-                <button type="button" class="mobile-nav-open" data-toggle="offCanvas">Close Menu</button>
-                {% if page.header|render|trim %}
-                  {{ page.header }}
-                {% endif %}
-              </div>
-            </div>
-          </header>
+      <div class="cell shrink header medium-cell-block-container grid-padding-x">
+        {{ page.header }}
+      </div>
 
-          {% if page.primary_menu|render|trim %}
-            <section class="primary-menu clearfix">
-              <div class="row">
-                <div class="columns">
-                  {{ page.primary_menu }}
-                </div>
-              </div>
-            </section>
-          {% endif %}
+      <div class="cell medium-auto medium-cell-block-container">
+        <div class="grid-x grid-padding-x">
+          <div class="cell auto medium-4 medium-cell-block-y">
+            {{ page.content }}
+            {% include "@pages/homepage/homepage.html.twig" %}
+          </div>
 
-            <div id="main-wrapper" role="main">
-              <div id="main" class="clearfix">
-
-                {% if page.highlighted|render|trim %}
-                  <section class="messages">
-                    <div class="row">
-                      <div class="columns">
-                        {{ page.highlighted }}
-                      </div>
-                    </div>
-                  </section>
-                {% endif %}
-
-                {% if page.help|render|trim %}
-                  <section class="help">
-                    <div class="row">
-                      <div class="columns">
-                        {{ page.help }}
-                      </div>
-                    </div>
-                  </section>
-                {% endif %}
-
-                {% if page.breadcrumb|render|trim %}
-                  <section class="breadcrumb">
-                    <div class="row">
-                      <div class="columns">
-                        {{ page.breadcrumb }}
-                      </div>
-                    </div>
-                  </section>
-                {% endif %}
-
-                {% if page.featured|render|trim %}
-                  <section class="featured">
-                    <div class="row">
-                      <div class="columns">
-                        {{ page.featured }}
-                      </div>
-                    </div>
-                  </section>
-                {% endif %}
-
-                {% if page.sidebar_first|render|trim and page.sidebar_second|render|trim %}
-                  <section class="main three-col">
-                {% elseif  page.sidebar_first|render|trim and not page.sidebar_second|render|trim %}
-                  <section class="main two-col active-first">
-                {% elseif  page.sidebar_second|render|trim and not page.sidebar_first|render|trim %}
-                  <section class="main two-col active-second">
-                {% else %}
-                  <section class="main one-col">
-                {% endif %}
-
-                  <div class="row">
-                    {% if page.sidebar_first|render|trim %}
-                      <aside class="sidebar-first columns sidebar" role="complementary">
-                        {{ page.sidebar_first }}
-                      </aside>
-                    {% endif %}
-
-                    {% if page.content|render|trim %}
-                      <section class="main-column columns">
-                        {{ page.content }}
-                      </section>
-                    {% endif %}
-
-                    {% if page.sidebar_second|render|trim %}
-                      <aside class="sidebar-second columns sidebar" role="complementary">
-                        {{ page.sidebar_second }}
-                      </aside>
-                    {% endif %}
-                  </div>
-                </section>
-
-              </div>
-            </div>
-
-            {% if page.footer|render|trim %}
-              <footer class="site-footer" role="contentinfo">
-                <div class="row">
-                  <div class="columns">
-                    {{ page.footer }}
-                  </div>
-                </div>
-              </footer>
-            {% endif %}
+          {{ page.sidebar_first }}
 
         </div>
       </div>
+      <div class="cell shrink footer">
+        {{ page.footer }}
+      </div>
     </div>
+  </div>
 
-    <div class="off-canvas position-left" id="offCanvas" data-off-canvas data-transition="push">
-      <button class="close-button" aria-label="Close menu" type="button" data-toggle="offCanvas">
-        <span aria-hidden="true">&times;</span>
-      </button>
-      {% if page.offcanvas|render|trim %}
-        {{ page.offcanvas }}
-      {% endif %}
-    </div>
-
+  <div class="off-canvas position-left" id="offCanvas" data-off-canvas>
+    {{ page.offcanvas }}
   </div>
 </div>
