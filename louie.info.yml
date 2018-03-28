@@ -9,9 +9,6 @@ screenshot: screenshot.png
 libraries:
   - louie/foundation
 
-ckeditor_stylesheets:
-  - css/dist/ckeditor.css
-
 stylesheets-remove:
   - core/assets/vendor/normalize-css/normalize.css
   - core/modules/system/css/system.theme.css
